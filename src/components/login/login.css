@@ -1,0 +1,15 @@
+.formLogin {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.formBottom{
+  width: 30%;
+  margin: 8px;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,15 @@
+.form form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.form form textarea {
+  background-color: #e8eaf6;
+  border: none;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
