@@ -5,14 +5,15 @@ import {
   ADD_NEW_POST,
   WRITE_NEW_MESSAGE,
   CHANGE_PROFILE_STATUS,
+  SAVE_PROFILE_PHOTO,
 } from "../actions/actionTypes";
 
 const defaultState = {
   initialization: true,
   logged: false,
   loggedUser: null,
-  // status: "",
   posts: [],
+  photos: null,
   errors: null,
 };
 
@@ -25,16 +26,11 @@ export default function auth(state = defaultState, action) {
         logged: action.logged,
         loggedUser: action.loggedUser,
       };
-    // case INSERT_LOGGED_USER:
-    //   return {
-    //     ...state,
-    //     loggedUser: action.obj,
-    //   };
-    // case CHANGE_PROFILE_STATUS:
-    //   return {
-    //     ...state,
-    //     status: action.status,
-    //   };
+    case SAVE_PROFILE_PHOTO:
+      return {
+        ...state,
+        photos: action.photos,
+      };
     case ADD_NEW_POST:
       return {
         ...state,

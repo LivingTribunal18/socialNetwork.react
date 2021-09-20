@@ -3,6 +3,7 @@ import {
   THROW_AUTH_EXCEPTION,
   WRITE_NEW_MESSAGE,
   ADD_NEW_POST,
+  SAVE_PROFILE_PHOTO,
 } from "./actionTypes";
 import axios from "axios";
 
@@ -125,6 +126,61 @@ export function publishPost(post) {
   };
 }
 
+export function uploadPhoto(photo) {
+  return async (dispatch) => {
+    const formData = new FormData();
+    formData.append("image", photo);
+    try {
+      const response = await axios.put(
+        `https://social-network.samuraijs.com/api/1.0/profile/photo`,
+        formData,
+        {
+          withCredentials: true,
+          headers: {
+            "API-KEY": apiKey,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data);
+      if (response.data.resultCode === 1) {
+        dispatch(errorOccurred(response.data.messages));
+      } else {
+        dispatch(savePhoto(response.data.data.photos));
+        dispatch(errorOccurred(null));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
+
+export function fetchEditedProfile(profileObj) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `https://social-network.samuraijs.com/api/1.0/profile`,
+        profileObj,
+        {
+          withCredentials: true,
+          headers: {
+            "API-KEY": apiKey,
+          },
+        }
+      );
+      console.log(response.data);
+      if (response.data.resultCode === 1) {
+        dispatch(errorOccurred(response.data.messages));
+      } else {
+        dispatch(checkLogged());
+        dispatch(errorOccurred(null));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
+
 export function loggedIn(initialization, logged, loggedUser) {
   return {
     type: LOG_IN_USER,
@@ -134,10 +190,10 @@ export function loggedIn(initialization, logged, loggedUser) {
   };
 }
 
-export function errorOccurred(e) {
+export function savePhoto(photos) {
   return {
-    type: THROW_AUTH_EXCEPTION,
-    e,
+    type: SAVE_PROFILE_PHOTO,
+    photos,
   };
 }
 
@@ -152,5 +208,12 @@ export function fetchPosts(post) {
   return {
     type: ADD_NEW_POST,
     post,
+  };
+}
+
+export function errorOccurred(e) {
+  return {
+    type: THROW_AUTH_EXCEPTION,
+    e,
   };
 }

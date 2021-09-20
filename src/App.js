@@ -51,7 +51,7 @@ function App(props) {
 
   return (
     <Router>
-      {!props.initialization ? (
+      {props.initialization ? (
         <Loader />
       ) : (
         <div style={{ display: "flex" }}>

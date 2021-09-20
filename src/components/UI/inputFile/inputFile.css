@@ -1,0 +1,38 @@
+.btn-tertiary {
+  display: flex;
+  align-items: center;
+  color: #555;
+  font-size: 14px;
+  padding: 0;
+  width: 300px;
+  /*display: block;*/
+  border: 2px solid #555;
+  background: #fff;
+  position: absolute;
+}
+.btn-tertiary:hover,
+.btn-tertiary :focus {
+   color: #000;
+   border-color: #000;
+ }
+
+/* input file style */
+.input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.js-fileName{
+  margin-left: 10px;
+}
+
+.input-file + .js-labelFile{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*white-space: nowrap;*/
+  padding: 0 10px;
+  cursor: pointer;
+}
