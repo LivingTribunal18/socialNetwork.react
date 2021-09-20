@@ -19,7 +19,7 @@ import ErrorAlert from "../errors/error.js";
 import "./login.css";
 
 import { connect } from "react-redux";
-import { errorOccurred, logIn } from "../../store/actions/auth";
+import { errorOccurred, logIn, browseCaptcha } from "../../store/actions/auth";
 import { useHistory } from "react-router";
 import { Redirect } from "react-router-dom";
 import isJS from "is_js";
@@ -56,10 +56,7 @@ function Login(props) {
   const history = useHistory();
   const [rememberMe, setRememberMe] = useState(false);
   const [values, setValues] = useState({
-    amount: "",
     password: "",
-    weight: "",
-    weightRange: "",
     showPassword: false,
   });
 
@@ -88,9 +85,14 @@ function Login(props) {
     let email = "";
     let password = formEelements["password"].value;
 
+    let captcha = null;
+    if (props.captcha) {
+      captcha = formEelements["captcha"].value;
+    }
+
     if (isJS.email(formEelements["email"].value)) {
       email = formEelements["email"].value;
-      props.logIn(email, password, rememberMe);
+      props.logIn(email, password, rememberMe, captcha);
     } else {
       props.errorOccurred(["Incorrect Email Spelling"]);
     }
@@ -124,6 +126,19 @@ function Login(props) {
             }
           />
         </FormControl>
+        {props.captcha && (
+          <div className="captcha">
+            <img src={props.captcha} alt="captcha" />
+            <TextField
+              required
+              label="Captcha"
+              name="captcha"
+              id="standard-size-normal"
+              className="captchaInput"
+            />
+          </div>
+        )}
+
         <div className={"formBottom"}>
           <FormControlLabel
             control={
@@ -157,6 +172,7 @@ function Login(props) {
 function mapStateToProps(state) {
   return {
     logged: state.auth.logged,
+    captcha: state.auth.captcha,
     errors: state.auth.errors,
   };
 }
