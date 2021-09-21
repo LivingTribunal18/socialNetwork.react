@@ -1,16 +1,16 @@
 import {
   LOG_IN_USER,
   THROW_AUTH_EXCEPTION,
-  INSERT_LOGGED_USER,
   ADD_NEW_POST,
   WRITE_NEW_MESSAGE,
-  CHANGE_PROFILE_STATUS,
   SAVE_PROFILE_PHOTO,
+  FETCH_CAPTCHA,
 } from "../actions/actionTypes";
 
 const defaultState = {
   initialization: true,
   logged: false,
+  captcha: "",
   loggedUser: null,
   posts: [],
   photos: null,
@@ -40,6 +40,11 @@ export default function auth(state = defaultState, action) {
       return {
         ...state,
         messages: [...state.messages, action.message],
+      };
+    case FETCH_CAPTCHA:
+      return {
+        ...state,
+        captcha: action.captcha,
       };
     case THROW_AUTH_EXCEPTION:
       return {

@@ -13,3 +13,13 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.captcha{
+  display: flex;
+  margin: 20px 0;
+}
+
+.captchaInput{
+  flex-grow: 2;
+  margin-left: 20px;
+}

@@ -4,12 +4,13 @@ import {
   WRITE_NEW_MESSAGE,
   ADD_NEW_POST,
   SAVE_PROFILE_PHOTO,
+  FETCH_CAPTCHA,
 } from "./actionTypes";
 import axios from "axios";
 
 const apiKey = "4fe2e3e7-fdb3-4bd4-beaf-24412c3b62e9";
 
-export function logIn(email, password, rememberMe) {
+export function logIn(email, password, rememberMe, captcha = null) {
   return async (dispatch) => {
     dispatch(loggedIn(true, false, null));
     try {
@@ -19,6 +20,7 @@ export function logIn(email, password, rememberMe) {
           email,
           password,
           rememberMe,
+          captcha,
         }
       );
       console.log(response);
@@ -26,6 +28,9 @@ export function logIn(email, password, rememberMe) {
         dispatch(errorOccurred(null));
         dispatch(loggedIn(false, true, response.data));
       } else {
+        if (response.data.resultCode === 10) {
+          dispatch(browseCaptcha());
+        }
         dispatch(errorOccurred(response.data.messages));
       }
     } catch (e) {
@@ -52,6 +57,23 @@ export function checkLogged() {
       } else {
         dispatch(loggedIn(false, false, null));
       }
+    } catch (e) {
+      dispatch(errorOccurred(e));
+      console.log(e);
+    }
+  };
+}
+
+export function browseCaptcha() {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `https://social-network.samuraijs.com/api/1.0/security/get-captcha-url`,
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(fetchCaptcha(response.data.url));
     } catch (e) {
       dispatch(errorOccurred(e));
       console.log(e);
@@ -208,6 +230,13 @@ export function fetchPosts(post) {
   return {
     type: ADD_NEW_POST,
     post,
+  };
+}
+
+export function fetchCaptcha(captcha) {
+  return {
+    type: FETCH_CAPTCHA,
+    captcha,
   };
 }
 
