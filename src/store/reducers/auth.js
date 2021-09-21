@@ -13,6 +13,7 @@ const defaultState = {
   captcha: "",
   loggedUser: null,
   posts: [],
+  messages: [],
   photos: null,
   errors: null,
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Alert, AlertTitle } from "@material-ui/lab";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,3 +28,7 @@ export default function ErrorAlert(props) {
     </div>
   );
 }
+
+ErrorAlert.propTypes = {
+  errors: PropTypes.array,
+};

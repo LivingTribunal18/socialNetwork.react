@@ -11,6 +11,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const drawerWidth = 270;
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Appbar(props) {
-  // const { window } = props;
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -78,3 +78,8 @@ function Appbar(props) {
 }
 
 export default Appbar;
+
+Appbar.propTypes = {
+  logged: PropTypes.bool,
+  logOut: PropTypes.func,
+};

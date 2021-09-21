@@ -1,15 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import "./friendsList.css";
-import {
-  List,
-  ListItem,
-  Divider,
-  ListItemText,
-  ListItemAvatar,
-  Avatar,
-  Typography,
-} from "@material-ui/core";
+import { List } from "@material-ui/core";
 import FriendItem from "./friendItem/friendItem";
 
 class FriendsList extends React.Component {

@@ -1,0 +1,54 @@
+.chatBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.chatBox span {
+  margin: 0 10px;
+}
+
+.messageBlock {
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #bebebe;
+}
+
+.avatarBlock {
+  width: 10%;
+  /* display: block; */
+  padding: 0 10px;
+}
+
+.avatarBlock span {
+  margin-top: 5px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: #273c75;
+}
+
+.avatarImg {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: url("https://source.unsplash.com/random") 50% 50% / cover;
+}
+
+.sendMessage {
+  margin: 30px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.textField {
+  padding: 5px 10px;
+  width: 50%;
+}
+
+.rightTab {
+  width: 100%;
+}

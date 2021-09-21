@@ -5,6 +5,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import InputFile from "../inputFile/inputFile";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(() => ({
   btn: {
@@ -58,3 +59,12 @@ export default function FloatingActionButtons(props) {
 
   return renderBtn;
 }
+
+FloatingActionButtons.propTypes = {
+  position: PropTypes.object,
+  editType: PropTypes.string,
+  hiddenEdit: PropTypes.bool,
+  setHiddenEdit: PropTypes.func,
+  uploadPhoto: PropTypes.func,
+  triggerFetchingEdition: PropTypes.func,
+};

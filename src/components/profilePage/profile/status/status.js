@@ -3,6 +3,7 @@ import { alpha, withStyles, makeStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import PropTypes from "prop-types";
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -85,5 +86,11 @@ function Status(props) {
     </form>
   );
 }
+
+Status.propTypes = {
+  publishStatus: PropTypes.func,
+  status: PropTypes.string,
+  statusDisabled: PropTypes.bool,
+};
 
 export default Status;

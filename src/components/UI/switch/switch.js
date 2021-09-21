@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import PropTypes from "prop-types";
 
 const Android12Switch = styled(Switch)(({ theme }) => ({
   padding: 8,
@@ -50,3 +51,7 @@ export default function SwitchInput(props) {
     </FormGroup>
   );
 }
+
+SwitchInput.propTypes = {
+  getEditedProfileInfo: PropTypes.func,
+};

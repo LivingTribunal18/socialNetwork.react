@@ -11,6 +11,7 @@ import Collapse from "@material-ui/core/Collapse";
 import LinkIcon from "@material-ui/icons/Link";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +50,7 @@ export default function Contacts(props) {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {Object.keys(props.editProfile.contacts).map((link, index) => {
+          {Object.keys(props.contacts).map((link, index) => {
             return (
               <ListItem button className={classes.nested} key={index}>
                 <Link href={props.contacts[link]}>
@@ -76,3 +77,10 @@ export default function Contacts(props) {
     </List>
   );
 }
+
+Contacts.propTypes = {
+  editProfile: PropTypes.object,
+  contacts: PropTypes.object,
+  getEditedContactsList: PropTypes.func,
+  hiddenEdit: PropTypes.bool,
+};

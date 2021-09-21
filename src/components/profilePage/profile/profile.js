@@ -6,6 +6,7 @@ import Status from "./status/status";
 import FloatingActionButtons from "../../UI/actionButton/actionButton";
 import TextField from "@mui/material/TextField";
 import SwitchInput from "../../UI/switch/switch";
+import PropTypes from "prop-types";
 import "./profile.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -158,5 +159,19 @@ function MainContent(props) {
     </div>
   );
 }
+
+MainContent.propTypes = {
+  activeUser: PropTypes.object,
+  editProfile: PropTypes.object,
+  img: PropTypes.string,
+  status: PropTypes.string,
+  email: PropTypes.string,
+  statusDisabled: PropTypes.bool,
+  uploadPhoto: PropTypes.func,
+  publishStatus: PropTypes.func,
+  getEditedProfileInfo: PropTypes.func,
+  getEditedContactsList: PropTypes.func,
+  triggerFetchingEdition: PropTypes.func,
+};
 
 export default MainContent;

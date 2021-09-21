@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
 import {
   ListItem,
   ListItemText,
@@ -8,9 +7,10 @@ import {
   Avatar,
   Divider,
   Typography,
-} from "@material-ui/core/";
+} from "@material-ui/core";
+import PropTypes from "prop-types";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   inline: {
     display: "inline",
   },
@@ -52,3 +52,7 @@ export default function FriendItem(props) {
     </>
   );
 }
+
+FriendItem.propTypes = {
+  friends: PropTypes.array,
+};

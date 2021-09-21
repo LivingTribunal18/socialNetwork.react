@@ -1,6 +1,7 @@
 import React from "react";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import "./inputFile.css";
+import PropTypes from "prop-types";
 
 function InputFile(props) {
   function showFile(element) {
@@ -55,3 +56,9 @@ function InputFile(props) {
 }
 
 export default InputFile;
+
+InputFile.propTypes = {
+  uploadPhoto: PropTypes.func,
+  setHidden: PropTypes.func,
+  position: PropTypes.object,
+};

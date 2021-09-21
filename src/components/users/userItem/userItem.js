@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, Avatar, Typography } from "@material-ui/core";
 import ava from "../../../img/seb-creativo-3jG-UM8IZ40-unsplash.jpg";
 import "./userItem.css";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   drawerPaper: {
@@ -77,3 +78,9 @@ export default function UserItem(props) {
     </>
   );
 }
+
+UserItem.propTypes = {
+  changeFollowing: PropTypes.func,
+  users: PropTypes.array,
+  btnLoader: PropTypes.bool,
+};

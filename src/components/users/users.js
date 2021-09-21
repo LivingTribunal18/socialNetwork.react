@@ -3,9 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Container, Button, Typography } from "@material-ui/core";
 import Loader from "../UI/loader/loader";
 import UserItem from "./userItem/userItem";
-
 import { connect } from "react-redux";
-
 import {
   browseUsers,
   increaseCount,
