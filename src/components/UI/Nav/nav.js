@@ -80,9 +80,10 @@ export default function Nav(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {["Profile", "Messages", "Users", "Music"].map((text, index) => (
+        {["Profile", "Messages", "Users", "Posts"].map((text, index) => (
           <NavLink
             activeClassName={classes.activeLink}
+            exact
             to={`/${text.toLowerCase()}`}
             key={text}
           >

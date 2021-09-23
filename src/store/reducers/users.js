@@ -38,11 +38,13 @@ export default function users(state = defaultState, action) {
     case FETCH_USER_BY_ID:
       return {
         ...state,
+        loading: false,
         activeUser: action.activeUser,
       };
     case CHANGE_USER_STATUS:
       return {
         ...state,
+        loading: false,
         statusActiveUser: action.statusActiveUser,
       };
     case LOAD_MORE_USERS:

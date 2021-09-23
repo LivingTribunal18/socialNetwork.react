@@ -2,7 +2,6 @@ import {
   BROWSE_USERS,
   FETCH_USERS_LOADED,
   LOAD_MORE_USERS,
-  FOLLOW_HANDLER,
   FETCH_USER_BY_ID,
   BTN_LOADER,
   CHANGE_USER_STATUS,
@@ -30,10 +29,13 @@ export function browseUsers() {
 
 export function browseUserById(id) {
   return async (dispatch) => {
+    dispatch(fetchUsersLoaded());
     try {
       const response = await axios.get(
         `https://social-network.samuraijs.com/api/1.0/profile/${id}`
       );
+
+      console.log(response.data);
       const activeUser = response.data;
       dispatch(fetchUserById(activeUser));
     } catch (e) {
@@ -107,13 +109,6 @@ export function fetchStatusUser(statusActiveUser) {
   return {
     type: CHANGE_USER_STATUS,
     statusActiveUser,
-  };
-}
-
-export function followHandler(users) {
-  return {
-    type: FOLLOW_HANDLER,
-    users,
   };
 }
 

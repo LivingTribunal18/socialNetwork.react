@@ -112,30 +112,31 @@ function ProfilePage(props) {
     <div className="profilePage">
       {props.errors && <ErrorAlert errors={props.errors} />}
       <div className={classes.toolbar} />
-      {props.activeUser &&
-      props.loggedUser &&
-      props.statusActiveUser !== null ? (
-        <Profile
-          activeUser={props.activeUser}
-          status={props.statusActiveUser}
-          statusDisabled={statusDisabled}
-          publishStatus={props.publishStatus}
-          email={email}
-          img={img}
-          editProfile={editProfile}
-          uploadPhoto={props.uploadPhoto}
-          getEditedProfileInfo={getEditedProfileInfo}
-          getEditedContactsList={getEditedContactsList}
-          triggerFetchingEdition={triggerFetchingEdition}
-        />
+
+      {!props.loading && props.activeUser && props.loggedUser ? (
+        <>
+          <Profile
+            activeUser={props.activeUser}
+            status={props.statusActiveUser}
+            statusDisabled={statusDisabled}
+            publishStatus={props.publishStatus}
+            email={email}
+            img={img}
+            editProfile={editProfile}
+            uploadPhoto={props.uploadPhoto}
+            getEditedProfileInfo={getEditedProfileInfo}
+            getEditedContactsList={getEditedContactsList}
+            triggerFetchingEdition={triggerFetchingEdition}
+          />
+          <div className={classes.toolbar} />
+          {props.logged && !statusDisabled && <NewPost />}
+          <div className={classes.toolbar} />
+          {props.logged && !statusDisabled && <PostsList />}
+          <div className={classes.toolbar} />
+        </>
       ) : (
         <Loader />
       )}
-      <div className={classes.toolbar} />
-      {props.logged ? <NewPost /> : null}
-      <div className={classes.toolbar} />
-      {props.logged ? <PostsList /> : null}
-      <div className={classes.toolbar} />
     </div>
   );
 }
@@ -146,6 +147,7 @@ function mapStateToProps(state) {
     statusActiveUser: state.users.statusActiveUser,
     loggedUser: state.auth.loggedUser,
     logged: state.auth.logged,
+    loading: state.users.loading,
     photos: state.auth.photos,
     errors: state.auth.errors,
   };
